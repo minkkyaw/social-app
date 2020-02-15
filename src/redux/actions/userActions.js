@@ -20,7 +20,7 @@ export const loginUser = (userData, history) => dispatch => {
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
+      dispatch({ type: SET_ERRORS, payload: err });
     });
 };
 
@@ -35,11 +35,11 @@ export const signupUser = (newUserData, history) => dispatch => {
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
+      dispatch({ type: SET_ERRORS, payload: err });
     });
 };
 
-export const logoutUser = dispatch => {
+export const logoutUser = () => dispatch => {
   localStorage.removeItem("fbIdToken");
   delete axios.defaults.headers.common[`Authorization`];
   dispatch({ type: SET_UNAUTHENTICATED });
@@ -50,12 +50,11 @@ export const getUserData = () => dispatch => {
   axios
     .get("/user")
     .then(res => {
-      console.log(res.data);
       return dispatch({ type: SET_USER, payload: res.data.userData });
     })
     .catch(err => {
-      console.log(err.response.data);
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err });
     });
 };
 
@@ -69,7 +68,7 @@ export const uploadImage = formData => dispatch => {
     })
     .catch(err => {
       console.error(err);
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
+      dispatch({ type: SET_ERRORS, payload: err });
     });
 };
 
@@ -83,7 +82,7 @@ export const editUserDetials = userDetails => dispatch => {
     })
     .catch(err => {
       console.log(userDetails);
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
+      dispatch({ type: SET_ERRORS, payload: err });
     });
 };
 
