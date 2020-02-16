@@ -3,7 +3,8 @@ import {
   LOADING_DATA,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
-  DELETE_SCREAM
+  DELETE_SCREAM,
+  POST_SCREAM
 } from "../types";
 
 const initialState = {
@@ -24,6 +25,11 @@ export default (state = initialState, actions) => {
         ...state,
         screams: actions.payload,
         loading: false
+      };
+    case POST_SCREAM:
+      return {
+        ...state,
+        screams: [actions.payload, ...state.screams]
       };
     case LIKE_SCREAM:
     case UNLIKE_SCREAM:

@@ -42,6 +42,7 @@ export const signupUser = (newUserData, history) => dispatch => {
 export const logoutUser = () => dispatch => {
   localStorage.removeItem("fbIdToken");
   delete axios.defaults.headers.common[`Authorization`];
+  window.location.href = "/login";
   dispatch({ type: SET_UNAUTHENTICATED });
 };
 
