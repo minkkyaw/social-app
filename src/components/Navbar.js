@@ -7,10 +7,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import MyButton from "../utils/MyButton";
+import Notifications from "./Notifications";
 
 import AddIcon from "@material-ui/icons/Add";
 import HomeIcon from "@material-ui/icons/Home";
-import Notifications from "@material-ui/icons/Notifications";
+
 import PostScream from "./PostScream";
 
 const Navbar = ({ authenticated }) => {

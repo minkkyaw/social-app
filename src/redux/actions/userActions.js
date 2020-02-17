@@ -4,7 +4,8 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
-  LOADING_USER
+  LOADING_USER,
+  MARK_NOTIFICATIONS_READ
 } from "../types";
 import axios from "axios";
 
@@ -20,7 +21,7 @@ export const loginUser = (userData, history) => dispatch => {
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: SET_ERRORS, payload: err });
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
 
@@ -35,7 +36,7 @@ export const signupUser = (newUserData, history) => dispatch => {
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: SET_ERRORS, payload: err });
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
 
@@ -55,7 +56,7 @@ export const getUserData = () => dispatch => {
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: SET_ERRORS, payload: err });
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
 
@@ -69,7 +70,7 @@ export const uploadImage = formData => dispatch => {
     })
     .catch(err => {
       console.error(err);
-      dispatch({ type: SET_ERRORS, payload: err });
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
 
@@ -82,9 +83,19 @@ export const editUserDetials = userDetails => dispatch => {
       dispatch(getUserData());
     })
     .catch(err => {
-      console.log(userDetails);
-      dispatch({ type: SET_ERRORS, payload: err });
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
+};
+
+export const markNotificationsRead = notiIds => dispatch => {
+  axios
+    .post("/notifications", notiIds)
+    .then(res => {
+      dispatch({
+        type: MARK_NOTIFICATIONS_READ
+      });
+    })
+    .catch(err => console.log(err));
 };
 
 const setAuthorizationHeader = token => {

@@ -5,7 +5,8 @@ import {
   LOADING_UI,
   SET_UNAUTHENTICATED,
   SET_AUTHENTICATED,
-  LOADING_USER
+  LOADING_USER,
+  MARK_NOTIFICATIONS_READ
 } from "../types";
 
 const initialState = {
@@ -35,6 +36,11 @@ export default (state = initialState, action) => {
         loading: false,
         authenticated: true,
         ...action.payload
+      };
+    case MARK_NOTIFICATIONS_READ:
+      state.notifications.forEach(not => (not.read = true));
+      return {
+        ...state
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import AddIcon from "@material-ui/icons/Add";
@@ -14,7 +14,8 @@ import { connect } from "react-redux";
 import { postScream } from "../redux/actions/dataActions";
 import MyButton from "../utils/MyButton";
 
-const PostScream = ({ UI: { loading }, postScream }) => {
+const PostScream = ({ UI, postScream }) => {
+  const { loading } = UI.loading;
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState("");
   const [errors, setErrors] = useState({});
@@ -28,6 +29,10 @@ const PostScream = ({ UI: { loading }, postScream }) => {
   const handleChange = e => {
     setBody(e.target.value);
   };
+
+  useEffect(() => {
+    if (UI.errors) setErrors(UI.errors);
+  }, [UI.errors]);
 
   return (
     <Fragment>

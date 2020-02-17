@@ -18,6 +18,7 @@ import { logoutUser, getUserData } from "./redux/actions/userActions";
 import themeObject from "./utils/theme";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+import User from "./pages/user";
 
 const theme = createMuiTheme(themeObject);
 
@@ -45,6 +46,12 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <AuthRoute exact path="/signup" component={SignUp} />
                 <AuthRoute exact path="/login" component={LogIn} />
+                <Route exact path="/users/:handle" component={User} />
+                <Route
+                  exact
+                  path="/users/:handle/scream/:screamId"
+                  component={User}
+                />
               </Switch>
             </div>
           </BrowserRouter>

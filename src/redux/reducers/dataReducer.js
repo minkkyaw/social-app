@@ -4,7 +4,9 @@ import {
   LIKE_SCREAM,
   UNLIKE_SCREAM,
   DELETE_SCREAM,
-  POST_SCREAM
+  POST_SCREAM,
+  SET_SCREAM,
+  POST_COMMENT
 } from "../types";
 
 const initialState = {
@@ -26,10 +28,24 @@ export default (state = initialState, actions) => {
         screams: actions.payload,
         loading: false
       };
+    case SET_SCREAM:
+      return {
+        ...state,
+        scream: actions.payload,
+        loading: false
+      };
     case POST_SCREAM:
       return {
         ...state,
         screams: [actions.payload, ...state.screams]
+      };
+    case POST_COMMENT:
+      return {
+        ...state,
+        scream: {
+          ...state.scream,
+          comments: [actions.payload, ...state.scream.comments]
+        }
       };
     case LIKE_SCREAM:
     case UNLIKE_SCREAM:
@@ -37,6 +53,9 @@ export default (state = initialState, actions) => {
         scream => scream.screamId === actions.payload.screamId
       );
       state.screams[index] = actions.payload;
+      if (state.scream.screamId === actions.payload.screamId) {
+        state.scream = actions.payload;
+      }
       return {
         ...state
       };
@@ -45,7 +64,6 @@ export default (state = initialState, actions) => {
         scream => scream.screamId === actions.payload
       );
       state.screams.splice(deletedIndex, 1);
-      console.log(state);
       return {
         ...state
       };

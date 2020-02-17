@@ -39,7 +39,7 @@ exports.signup = (req, res) => {
         handle,
         email,
         createdAt: new Date().toISOString(),
-        imageUrl: `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${noImage}?alt=media`,
+        imageUrl: `https://storage.cloud.google.com/${config.storageBucket}/o/${noImage}?alt=media`,
         userId
       };
 

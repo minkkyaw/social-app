@@ -1,0 +1,35 @@
+[debug] [2020-02-17T03:11:23.157Z] ----------------------------------------------------------------------
+[debug] [2020-02-17T03:11:23.159Z] Command:       /Users/chan/.nvm/versions/node/v10.16.1/bin/node /Users/chan/.nvm/versions/node/v10.16.1/bin/firebase deploy
+[debug] [2020-02-17T03:11:23.160Z] CLI Version:   7.12.1
+[debug] [2020-02-17T03:11:23.160Z] Platform:      darwin
+[debug] [2020-02-17T03:11:23.160Z] Node Version:  v10.16.1
+[debug] [2020-02-17T03:11:23.161Z] Time:          Sun Feb 16 2020 22:11:23 GMT-0500 (Eastern Standard Time)
+[debug] [2020-02-17T03:11:23.161Z] ----------------------------------------------------------------------
+[debug] [2020-02-17T03:11:23.161Z] 
+[debug] [2020-02-17T03:11:23.174Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-17T03:11:23.174Z] > authorizing via signed-in user
+[debug] [2020-02-17T03:11:23.174Z] [iam] checking project employee-network-b5078 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-02-17T03:11:23.177Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-02-17T03:11:23.177Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-02-17T03:11:23.466Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-17T03:11:23.483Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/employee-network-b5078:testIamPermissions  
+
+[debug] [2020-02-17T03:11:23.785Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-17T03:11:23.789Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/employee-network-b5078  
+ 
+[debug] [2020-02-17T03:11:24.163Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'employee-network-b5078'...
+[info] 
+[info] i  deploying functions, hosting
+[debug] [2020-02-17T03:11:24.294Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received type undefined
+    at validateString (internal/validators.js:125:11)
+    at Object.join (path.js:1147:7)
+    at Config.path (/Users/chan/.nvm/versions/node/v10.16.1/lib/node_modules/firebase-tools/lib/config.js:149:39)
+    at getChildEnvironment (/Users/chan/.nvm/versions/node/v10.16.1/lib/node_modules/firebase-tools/lib/deploy/lifecycleHooks.js:50:49)
+    at runTargetCommands (/Users/chan/.nvm/versions/node/v10.16.1/lib/node_modules/firebase-tools/lib/deploy/lifecycleHooks.js:71:14)
+    at /Users/chan/.nvm/versions/node/v10.16.1/lib/node_modules/firebase-tools/lib/deploy/lifecycleHooks.js:122:24
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[error] 
+[error] Error: An unexpected error has occurred.

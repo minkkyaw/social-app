@@ -25,6 +25,9 @@ exports.getAllScreams = (req, res) => {
 
 exports.postScream = (req, res) => {
   const { body } = req.body;
+  if (!body) {
+    return res.status(404).json({ error: "Body must not be empty" });
+  }
   const newScream = {
     body,
     userHandle: req.user.handle,
@@ -66,8 +69,8 @@ exports.getScream = (req, res) => {
     })
     .then(data => {
       screamData.comments = [];
-      if (data.exists) {
-        data.forEach(doc => screamData.push(doc.data()));
+      if (data.size > 0) {
+        data.forEach(doc => screamData.comments.push(doc.data()));
       }
       return res.status(200).json(screamData);
     })
